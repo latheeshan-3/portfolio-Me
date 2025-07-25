@@ -1,0 +1,280 @@
+import { useState } from 'react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Send, 
+  Github, 
+  Linkedin, 
+  Twitter,
+  Calendar,
+  Clock,
+  Globe
+} from 'lucide-react';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Message sent successfully!",
+      description: "I'll get back to you within 24 hours.",
+    });
+    
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'alex.johnson@email.com',
+      href: 'mailto:alex.johnson@email.com'
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: '+1 (555) 123-4567',
+      href: 'tel:+15551234567'
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: 'San Francisco, CA',
+      href: '#'
+    },
+    {
+      icon: Globe,
+      label: 'Website',
+      value: 'alexjohnson.dev',
+      href: 'https://alexjohnson.dev'
+    }
+  ];
+
+  const socialLinks = [
+    { icon: Github, name: 'GitHub', href: '#', username: '@alexjohnson' },
+    { icon: Linkedin, name: 'LinkedIn', href: '#', username: 'alex-johnson-dev' },
+    { icon: Twitter, name: 'Twitter', href: '#', username: '@alexjohnsondev' }
+  ];
+
+  const availability = [
+    { icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
+    { icon: Calendar, label: 'Availability', value: 'Open for new projects' },
+    { icon: Globe, label: 'Time Zone', value: 'PST (UTC-8)' }
+  ];
+
+  return (
+    <section id="contact" className="py-20 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="hero-gradient">Let's Work Together</span>
+          </h2>
+          <p className="text-xl text-portfolio-text-dim max-w-2xl mx-auto">
+            Ready to bring your ideas to life? Let's discuss your next project
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <Card className="card-gradient p-8">
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-foreground mb-2">Send me a message</h3>
+                <p className="text-portfolio-text-dim">
+                  Have a project in mind? Fill out the form below and I'll get back to you as soon as possible.
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                      Full Name *
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      Email Address *
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                    Subject *
+                  </label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="bg-background border-border"
+                    placeholder="What's this about?"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    Message *
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="bg-background border-border resize-none"
+                    placeholder="Tell me about your project, timeline, and budget..."
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  size="lg" 
+                  disabled={isSubmitting}
+                  className="w-full"
+                >
+                  {isSubmitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </Card>
+          </div>
+
+          {/* Contact Info Sidebar */}
+          <div className="space-y-8">
+            {/* Contact Information */}
+            <Card className="card-gradient p-6">
+              <h3 className="text-xl font-bold text-foreground mb-6">Contact Information</h3>
+              <div className="space-y-4">
+                {contactInfo.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/20 transition-colors group"
+                  >
+                    <item.icon className="h-5 w-5 text-primary group-hover:text-primary-glow transition-colors" />
+                    <div>
+                      <p className="text-sm text-portfolio-text-dim">{item.label}</p>
+                      <p className="text-foreground font-medium">{item.value}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </Card>
+
+            {/* Availability */}
+            <Card className="card-gradient p-6">
+              <h3 className="text-xl font-bold text-foreground mb-6">Availability</h3>
+              <div className="space-y-4">
+                {availability.map((item) => (
+                  <div key={item.label} className="flex items-center gap-3">
+                    <item.icon className="h-5 w-5 text-accent" />
+                    <div>
+                      <p className="text-sm text-portfolio-text-dim">{item.label}</p>
+                      <p className="text-foreground font-medium">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            {/* Social Links */}
+            <Card className="card-gradient p-6">
+              <h3 className="text-xl font-bold text-foreground mb-6">Connect With Me</h3>
+              <div className="space-y-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/20 transition-colors group"
+                  >
+                    <social.icon className="h-5 w-5 text-primary group-hover:text-primary-glow transition-colors" />
+                    <div>
+                      <p className="text-foreground font-medium">{social.name}</p>
+                      <p className="text-sm text-portfolio-text-dim">{social.username}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </Card>
+
+            {/* CTA Card */}
+            <Card className="card-gradient p-6 text-center">
+              <h3 className="text-lg font-bold text-foreground mb-2">
+                Prefer a quick call?
+              </h3>
+              <p className="text-portfolio-text-dim text-sm mb-4">
+                Schedule a free 30-minute consultation to discuss your project
+              </p>
+              <Button variant="accent" size="sm" className="w-full">
+                <Calendar className="mr-2 h-4 w-4" />
+                Schedule a Call
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
