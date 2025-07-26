@@ -91,7 +91,7 @@ const Hero = () => {
     >
       {/* Catch My Vibe Button - TOP RIGHT CORNER */}
       <motion.div
-        className="absolute top-6 right-6 z-50 hidden lg:block"
+        className="absolute top-20 right-10 z-50 hidden lg:block"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.2, duration: 0.4 }}
