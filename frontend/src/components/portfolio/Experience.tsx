@@ -1,92 +1,83 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, MapPin, Building2, Award } from 'lucide-react';
+import { px } from 'framer-motion';
+
+// ...imports remain unchanged
 
 const Experience = () => {
   const experiences = [
     {
       id: 1,
-      company: 'TechFlow Solutions',
-      position: 'Senior Full Stack Developer',
-      location: 'San Francisco, CA',
-      period: '2022 - Present',
+      company: 'WENEED Federation',
+      position: 'Web Developer & IT Administrator',
+      location: 'Sri Lanka',
+      period: '2023 - 2025',
       type: 'Full-time',
-      description: 'Lead development of enterprise web applications serving 100K+ users. Architected microservices infrastructure and mentored junior developers.',
+      description:
+        'Managed and developed IT infrastructure and web platforms for a national NGO. Supported operations through digital transformation initiatives.',
       achievements: [
-        'Reduced application load time by 40% through optimization',
-        'Led migration to microservices architecture',
-        'Mentored 5 junior developers',
-        'Implemented CI/CD pipeline reducing deployment time by 60%'
+        'Built and maintained organizational websites and portals',
+        'Implemented internal IT support and automation tools',
+        'Optimized data workflows across departments',
+        'Led IT strategy and security planning'
       ],
-      technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'Docker', 'TypeScript'],
-      current: true
+      technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'WordPress', 'MySQL'],
+      current: true,
+      country: 'LK',
     },
     {
       id: 2,
-      company: 'StartupLab Inc.',
-      position: 'Full Stack Developer',
-      location: 'Remote',
-      period: '2020 - 2022',
-      type: 'Full-time',
-      description: 'Developed MVP for fintech startup from ground up. Built scalable backend APIs and responsive frontend applications.',
+      company: 'EV Stop (YouTube Channel)',
+      position: 'YouTube Manager & Web Developer',
+      location: 'Remote (USA-based)',
+      period: '2021 - 2023',
+      type: 'Remote',
+      description:
+        'Managed content strategy, video publishing, and channel analytics while also handling the web presence of EV Stop.',
       achievements: [
-        'Built product from MVP to 10K+ active users',
-        'Integrated payment processing systems',
-        'Achieved 99.9% uptime',
-        'Implemented real-time features using WebSockets'
+        'Increased subscriber base through SEO and engagement tactics',
+        'Built and maintained official website and blog',
+        'Automated upload workflows and analytics dashboards',
+        'Collaborated with international teams on content planning'
       ],
-      technologies: ['Vue.js', 'Python', 'Django', 'MongoDB', 'Redis', 'Stripe API'],
-      current: false
+      technologies: ['YouTube Studio', 'SEO Tools', 'HTML', 'CSS', 'JavaScript', 'WordPress'],
+      current: false,
+      country: 'US',
     },
     {
       id: 3,
-      company: 'Digital Innovations',
-      position: 'Frontend Developer',
-      location: 'New York, NY',
-      period: '2019 - 2020',
-      type: 'Full-time',
-      description: 'Focused on creating exceptional user experiences for e-commerce platforms. Collaborated with UX/UI designers to implement pixel-perfect designs.',
+      company: 'Georgia IT Inc.',
+      position: 'Talent Consultant / Recruitment Pool Specialist',
+      location: 'Remote (USA-based)',
+      period: '2021 - 2022',
+      type: 'Remote',
+      description:
+        'Specialized in technical and non-technical talent acquisition for a US-based IT staffing firm. Built pipelines and managed candidate experiences.',
       achievements: [
-        'Improved user engagement by 35%',
-        'Implemented responsive designs for mobile-first approach',
-        'Optimized Core Web Vitals scores',
-        'Built reusable component library'
+        'Sourced and placed high-quality IT candidates',
+        'Streamlined candidate onboarding process',
+        'Maintained and grew recruitment database',
+        'Collaborated across international HR teams'
       ],
-      technologies: ['React', 'SCSS', 'JavaScript', 'Webpack', 'Jest', 'Figma'],
-      current: false
-    },
-    {
-      id: 4,
-      company: 'Freelance',
-      position: 'Web Developer',
-      location: 'Remote',
-      period: '2018 - 2019',
-      type: 'Freelance',
-      description: 'Worked with various clients to build custom web solutions. Managed entire project lifecycle from requirements gathering to deployment.',
-      achievements: [
-        'Completed 15+ successful projects',
-        'Maintained 5-star client rating',
-        'Built e-commerce, portfolio, and business websites',
-        'Established long-term client relationships'
-      ],
-      technologies: ['WordPress', 'JavaScript', 'PHP', 'MySQL', 'HTML/CSS'],
-      current: false
+      technologies: ['LinkedIn Recruiter', 'ATS Systems', 'Excel', 'CRM Tools'],
+      current: false,
+      country: 'US',
     }
   ];
 
   const education = [
     {
-      institution: 'University of California, Berkeley',
-      degree: 'Bachelor of Science in Computer Science',
-      period: '2014 - 2018',
-      achievements: ['Graduated Magna Cum Laude', 'Dean\'s List (6 semesters)', 'CS Honor Society']
+      institution: 'University of Moratuwa, Sri Lanka',
+      degree: 'BSc (Hons) in Information Technology and Management (Ongoing)',
+      period: '2023 - Expected 2027',
+      achievements: ['Currently enrolled', 'Faculty of Information Technology']
     },
-
     {
-      institution: 'University of California, Berkeley',
-      degree: 'Bachelor of Science in Computer Science',
-      period: '2014 - 2018',
-      achievements: ['Graduated Magna Cum Laude', 'Dean\'s List (6 semesters)', 'CS Honor Society']
+      institution: 'Highlands National College, Sri Lanka',
+      degree: 'GCE A/L – Biological Science Stream',
+      period: 'Completed in 2020',
+      achievements: ['Completed High School', 'Sat for national A/L exams']
     }
   ];
 
@@ -96,6 +87,8 @@ const Experience = () => {
     { name: 'Certified Kubernetes Administrator', issuer: 'CNCF', year: '2022' },
     { name: 'MongoDB Certified Developer', issuer: 'MongoDB', year: '2021' }
   ];
+
+  // ...return and JSX rendering stays the same
 
   return (
     <section id="experience" className="py-20 relative">
@@ -130,7 +123,18 @@ const Experience = () => {
                         )}
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-                        <span className="text-lg font-medium text-accent">{exp.company}</span>
+<span className="text-lg font-medium text-accent">
+  {exp.company}
+  {exp.country && (
+    <img
+      src={`src/assets/${exp.country}.png`}
+      alt={`${exp.country} flag`}
+      className="inline-block w-7 h-5 ml-2"
+    />
+  )}
+</span>
+
+
                         <div className="flex items-center gap-4 text-sm text-portfolio-text-dim">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
@@ -177,7 +181,7 @@ const Experience = () => {
                 Education
               </h3>
               {education.map((edu, index) => (
-                <Card key={index} className="card-gradient p-6">
+                <Card key={index} className="card-gradient p-6" style={{ marginBottom: '30px' }}>
                   <h4 className="font-semibold text-foreground mb-2">{edu.degree}</h4>
                   <p className="text-accent mb-2">{edu.institution}</p>
                   <p className="text-sm text-portfolio-text-dim mb-3">{edu.period}</p>
@@ -210,11 +214,11 @@ const Experience = () => {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-portfolio-text-dim">Years of Experience</span>
-                  <span className="font-semibold text-primary">5+</span>
+                  <span className="font-semibold text-primary">3+</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-portfolio-text-dim">Projects Completed</span>
-                  <span className="font-semibold text-primary">200+</span>
+                  <span className="font-semibold text-primary">10+</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-portfolio-text-dim">Technologies Used</span>

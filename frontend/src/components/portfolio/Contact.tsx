@@ -11,11 +11,14 @@ import {
   Send, 
   Github, 
   Linkedin, 
-  Twitter,
+  X,
   Calendar,
   Clock,
   Globe
 } from 'lucide-react';
+
+ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,12 +34,15 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+   
+
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(`${API_URL}/api/contact`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData)
+});
+
 
       const data = await response.json();
 
@@ -72,39 +78,39 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.johnson@email.com',
-      href: 'mailto:alex.johnson@email.com'
+      value: 'latheeshan.t@gmail.com',
+      href: 'mailto:latheeshan.t@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+94 0789414128',
+      href: 'tel:+94 0789414128'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
+      value: 'colombo, srilanka',
+      href: 'https://www.google.com/maps/place/Colombo',
     },
-    {
+        {
       icon: Globe,
       label: 'Website',
-      value: 'alexjohnson.dev',
-      href: 'https://alexjohnson.dev'
+      value: 'latheeshan.dev',
+      href: 'https://latheeshan.dev'
     }
   ];
 
   const socialLinks = [
-    { icon: Github, name: 'GitHub', href: '#', username: '@alexjohnson' },
-    { icon: Linkedin, name: 'LinkedIn', href: '#', username: 'alex-johnson-dev' },
-    { icon: Twitter, name: 'Twitter', href: '#', username: '@alexjohnsondev' }
+    { icon: Github, name: 'GitHub', href: 'https://github.com/latheeshan-3', username: 'Latheeshan' },
+    { icon: Linkedin, name: 'LinkedIn', href: 'https://www.linkedin.com/in/latheeshan-t-7b503a245/', username: 'Latheeshan' },
+    { icon: X, name: 'X', href: 'https://x.com/Latheeshan_me', username: 'latheeshan_me' }
   ];
 
   const availability = [
     { icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
     { icon: Calendar, label: 'Availability', value: 'Open for new projects' },
-    { icon: Globe, label: 'Time Zone', value: 'PST (UTC-8)' }
+    { icon: Globe, label: 'Time Zone', value: 'SLST, UTC+05:30' }
   ];
 
   return (

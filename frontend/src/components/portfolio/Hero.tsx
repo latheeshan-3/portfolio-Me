@@ -191,6 +191,51 @@ const Hero = () => {
   </pre>
 </motion.div>
 
+
+{/* Mobile Vibe Modal - placed after the fake top bar block */}
+{showVibe && (
+  <motion.div
+  className="sm:hidden mt-[-1rem] mb-6 bg-[#1e1e1e] text-white p-4 rounded-md shadow-xl border border-gray-700 w-full max-w-xs mx-auto z-40 relative animate-glow"
+  initial={{ opacity: 1, y: -10 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: -10 }}
+  transition={{ duration:0.2 }}
+>
+
+    <div className="flex justify-between items-center mb-2">
+      <h4 className="text-sm font-medium">🎧 Vibe Mode</h4>
+      <button onClick={closeVibe}>
+        <X className="h-4 w-4 hover:text-red-400" />
+      </button>
+    </div>
+
+    <p className="text-xs text-gray-300 mb-3">
+      Music is playing. Feel the flow!
+    </p>
+
+    <div className="flex items-center gap-2">
+      <Button
+        onClick={togglePlay}
+        className="w-full text-xs py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-90"
+      >
+        {isPlaying ? (
+          <>
+            <Pause className="mr-1 h-4 w-4" />
+            Pause
+          </>
+        ) : (
+          <>
+            <Music className="mr-1 h-4 w-4" />
+            Play
+          </>
+        )}
+      </Button>
+    </div>
+
+    <audio ref={audioRef} src="/Weekend.mp3" preload="auto" />
+  </motion.div>
+)}
+
           {/* MOBILE IMAGE */}
         <motion.div
           className="block sm:hidden mt-10"
@@ -257,15 +302,16 @@ const Hero = () => {
 
         
 
-      {/* Vibe Modal */}
-      {showVibe && (
-        <motion.div
-          className="fixed bottom-8 right-8 bg-[#1e1e1e] text-white p-6 rounded-lg shadow-2xl border border-gray-700 z-50 w-[300px] sm:w-[360px]"
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          transition={{ duration: 0.3 }}
-        >
+     {/* Desktop Vibe Modal */}
+{showVibe && (
+  <motion.div
+    className="hidden sm:block fixed bottom-8 right-8 bg-[#1e1e1e] text-white p-6 rounded-lg shadow-2xl border border-gray-700 z-50 w-[300px] sm:w-[360px]"
+    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+    transition={{ duration: 0.3 }}
+  >
+
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-lg font-semibold">🎧 Vibe Mode</h4>
             <button onClick={closeVibe}>
@@ -298,6 +344,9 @@ const Hero = () => {
           <audio ref={audioRef} src="/Weekend.mp3" preload="auto" />
         </motion.div>
       )}
+
+   
+
     </motion.section>
   );
 };

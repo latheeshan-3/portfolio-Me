@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Code2, Github, Linkedin, Twitter, Heart, ArrowUp } from 'lucide-react';
+import { Code2, Github, Linkedin, Heart, ArrowUp, X } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,9 +25,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/latheeshan-3', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/latheeshan-t-7b503a245/', label: 'LinkedIn' },
+    { icon: X, href: 'https://x.com/Latheeshan_me', label: 'Twitter' },
   ];
 
   return (
@@ -50,7 +50,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <Code2 className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold hero-gradient">Alex Johnson</span>
+              <span className="text-2xl font-bold hero-gradient">Latheeshan</span>
             </div>
             <p className="text-portfolio-text-dim mb-6 max-w-md">
               Full Stack Developer crafting exceptional digital experiences through 
@@ -110,12 +110,10 @@ const Footer = () => {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center text-portfolio-text-dim mb-4 md:mb-0">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-red-500 mx-2" />
-              <span>by Alex Johnson</span>
+              
             </div>
-            <div className="text-portfolio-text-dim text-sm">
-              © {currentYear} Alex Johnson. All rights reserved.
+            <div className="text-portfolio-text-dim text-sm center" style={{ marginRight: '40%' }}>
+              © {currentYear} Latheeshan.T_ All rights reserved.
             </div>
           </div>
         </div>
